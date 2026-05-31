@@ -26,92 +26,131 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+import { ref, computed } from "vue";
 
-  const props = defineProps({
-    notes: Array,
-    activeId: [Number, String],
-  });
-  const emit = defineEmits(["add", "select"]);
+const props = defineProps({
+  notes: Array,
+  activeId: [Number, String],
+});
+const emit = defineEmits(["add", "select"]);
 
-  const searchQuery = ref("");
+const searchQuery = ref("");
 
-  const filteredNotes = computed(() => {
-    if (!props.notes) return [];
-    if (!searchQuery.value) return props.notes;
-    const q = searchQuery.value.toLowerCase();
-    return props.notes.filter(
-      (n) =>
-        n.title.toLowerCase().includes(q) ||
-        n.content.toLowerCase().includes(q),
-    );
-  });
+const filteredNotes = computed(() => {
+  if (!props.notes) return [];
+  if (!searchQuery.value) return props.notes;
+  const q = searchQuery.value.toLowerCase();
+  return props.notes.filter(
+    (n) =>
+      n.title.toLowerCase().includes(q) ||
+      n.content.toLowerCase().includes(q),
+  );
+});
 </script>
 
 <style scoped>
+.note-list {
+  width: 260px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--color-shadow);
+  transition: var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.add-btn {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform 0.1s ease;
+}
+.add-btn:hover {
+  background: var(--color-accent-hover);
+}
+.add-btn:active {
+  transform: scale(0.98);
+}
+
+.search-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-family: var(--font-sans);
+  background: var(--color-surface-secondary);
+  color: var(--color-text);
+  box-sizing: border-box;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+.search-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+.search-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-bg);
+}
+
+.list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.item {
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--color-text);
+  transition: background var(--transition-fast);
+}
+.item:hover {
+  background: var(--color-surface-secondary);
+}
+.item.active {
+  background: var(--color-accent-bg);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 4px var(--radius-sm) var(--radius-sm) 4px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.time {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+.empty {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  padding: 24px 0;
+}
+
+@media (max-width: 900px) {
   .note-list {
-    width: 240px;
-    background: var(--panel-bg);
-    border-radius: 8px;
-    padding: 12px;
-    box-shadow: var(--shadow);
-    display: flex;
-    flex-direction: column;
-  }
-  .add-btn {
     width: 100%;
-    padding: 10px;
-    background: var(--green);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+    max-height: 40vh;
   }
-  .search-input {
-    width: 100%;
-    margin-top: 10px;
-    padding: 8px 10px;
-    border: 1px solid var(--border-clr);
-    border-radius: 6px;
-    font-size: 13px;
-    background: var(--input-bg);
-    color: var(--text-color);
-    box-sizing: border-box;
-    outline: none;
-  }
-  .search-input:focus {
-    border-color: var(--green);
-  }
-  .list {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-    overflow-y: auto;
-  }
-  .item {
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    color: var(--text-color);
-  }
-  .item.active {
-    background: var(--green-bg);
-    border-left: 3px solid var(--green);
-  }
-  .title {
-    font-weight: 500;
-  }
-  .time {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 4px;
-  }
-  .empty {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 13px;
-    padding: 20px 0;
-  }
+}
 </style>
