@@ -1,5 +1,27 @@
-# Vue 3 + Vite
+# 在线 Markdown 笔记编辑器
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 项目介绍
+一款基于 Vue3 + Vite 开发的轻量化在线笔记工具，解决传统文本编辑器无法实时预览 Markdown 格式、数据易丢失等问题。项目采用组件化思想拆分模块，搭配数据校验机制保障数据规范，开箱即用，无需后端服务。
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## 技术栈
+`Vue3` `Vite` `marked` `highlight.js` `Zod` `LocalStorage`
+
+## 核心功能
+- 笔记新增、编辑、删除、切换，完整实现笔记 CRUD 能力
+- Markdown 语法实时预览，代码块高亮显示
+- 本地数据持久化，刷新页面数据不丢失
+- 支持笔记一键导出为 HTML 文件
+
+## 项目特点
+1. 模块化拆分笔记列表、编辑器、预览面板，低耦合设计，代码复用性、可维护性强
+2. 引入 Zod 构建数据校验规则，统一字段约束，避免脏数据写入本地缓存
+3. 基于 marked 完成 Markdown 语法解析，搭配代码高亮库优化阅读体验
+4. 纯前端实现，部署简单，适配主流浏览器
+
+## 快速启动
+```bash
+# 安装依赖
+npm install
+
+# 启动本地开发服务
+npm run dev
