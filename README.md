@@ -4,14 +4,14 @@
 
 ## 技术栈
 
-`Vue3` `Vite` `marked` `highlight.js` `Zod` `localStorage` `CSS Variables`
+`Vue3` `Vite` `Pinia` `marked` `highlight.js` `Zod` `localStorage` `CSS Variables`
 
 ## 核心功能
 
 - **笔记 CRUD** — 新增、编辑、删除、切换，完整笔记生命周期管理
 - **实时预览** — 基于 marked 解析 Markdown 语法，highlight.js 代码块高亮
 - **自动保存 + 防抖** — localStorage 持久化写入，1.5s 防抖优化高频 IO，底部实时显示保存状态
-- **暗色模式** — CSS 变量驱动亮/暗双主题，useTheme composable 管理状态，偏好持久化
+- **风格主题色** — CSS 自定义属性定义莫兰迪色系，Pinia store 全局管理浅色/深色双主题，ThemeToggle 组件一键切换，偏好 localStorage 持久化，柔和淡入淡出过渡动画
 - **Markdown 工具栏** — 一键插入粗体/斜体/标题/代码块/列表，支持光标位置精准定位与选中文本包裹
 - **键盘快捷键** — Ctrl+N 新建笔记、Ctrl+S 即时保存
 - **笔记搜索** — 侧栏实时过滤，按标题与内容模糊匹配，大小写不敏感
@@ -28,15 +28,16 @@
 
 ```
 src/
-├── App.vue                    # 根组件：状态管理、快捷键注册
-├── main.js                    # 入口
-├── style.css                  # 全局样式 + CSS 变量（亮/暗主题）
-├── composables/
-│   └── useTheme.js            # 主题状态管理
+├── App.vue                    # 根组件：状态管理、快捷键注册、顶栏布局
+├── main.js                    # 入口：注册 Vue 应用 + Pinia 插件
+├── style.css                  # 全局样式 + Apple 风格 CSS 变量（浅色/深色主题）
+├── stores/
+│   └── theme.js               # Pinia theme store：主题状态全局管理 + 持久化
 └── components/
     ├── NoteList.vue           # 左侧：笔记列表 + 搜索
     ├── NoteEditor.vue         # 中间：编辑器 + 工具栏 + Zod 校验
-    └── NotePreview.vue        # 右侧：marked 实时预览
+    ├── NotePreview.vue        # 右侧：marked 实时预览 + 动态高亮主题
+    └── ThemeToggle.vue        # 主题切换按钮：SVG 图标 + 过渡动画
 ```
 
 ## 快速启动
