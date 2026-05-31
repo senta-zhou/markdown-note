@@ -22,7 +22,7 @@
 <style scoped>
   .preview {
     width: 400px;
-    background: #fff;
+    background: var(--panel-bg);
     border-radius: 8px;
     padding: 16px;
     overflow-y: auto;
@@ -31,8 +31,10 @@
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 12px;
+    color: var(--text-color);
   }
   .content {
     line-height: 1.6;
+    color: var(--text-color);
   }
 </style>

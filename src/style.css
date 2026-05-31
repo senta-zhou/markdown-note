@@ -294,3 +294,32 @@ code {
     border-right-color: var(--border);
   }
 }
+
+/* ── App-specific variables ── */
+:root {
+  --app-bg: #f5f7fa;
+  --panel-bg: #fff;
+  --text-color: #333;
+  --text-muted: #999;
+  --border-clr: #ddd;
+  --green: #42b983;
+  --green-bg: #e8f4f8;
+  --red: #ff4d4f;
+  --blue: #1890ff;
+  --input-bg: #fff;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+:root.dark {
+  --app-bg: #1a1a2e;
+  --panel-bg: #16213e;
+  --text-color: #e0e0e0;
+  --text-muted: #7a7a8a;
+  --border-clr: #2a2a4a;
+  --green: #42b983;
+  --green-bg: #1a3a2a;
+  --red: #e94560;
+  --blue: #4da6ff;
+  --input-bg: #0f3460;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
